@@ -9,7 +9,7 @@ console.log("api key: " + "d5yqb5k7mfg3da4zfa4ntkk9");
 const options = {
     hostname: "api.gettyimages.com", 
     port: 443, 
-    path: '/v3/search/images?fields=comp',
+    path: '/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase=books',
     method: 'GET', 
     headers: {
           'Api-Key': 'd5yqb5k7mfg3da4zfa4ntkk9'
