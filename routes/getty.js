@@ -9,7 +9,7 @@ console.log("api key: " + "d5yqb5k7mfg3da4zfa4ntkk9");
 const options = {
     hostname: "api.gettyimages.com", 
     port: 443, 
-    path: '/v3/search/images?fields=riots',
+    path: '/v3/search/images?fields=comp',
     method: 'GET', 
     headers: {
           'Api-Key': 'd5yqb5k7mfg3da4zfa4ntkk9'
