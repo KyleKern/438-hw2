@@ -10,7 +10,7 @@ var users = require('./routes/users');
 var about = require('./routes/about');
 var getty = require('./routes/getty');
 var twitter = require('./routes/twitter'); 
-
+var twitter_getty = require('./routes/twitter_getty');
 var app = express();
 
 // view engine setup
@@ -30,7 +30,7 @@ app.use('/users', users);
 app.use('/about', about); 
 app.use('/getty', getty); 
 app.use('/twitter', twitter); 
-
+app.use('/twitter_getty', twitter_getty);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

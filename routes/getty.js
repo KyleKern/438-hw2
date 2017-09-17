@@ -1,23 +1,22 @@
+
 var express = require('express');
 var router = express.Router();
 var https = require('https'); 
 
 
 console.log("In getty!!!!!!!!!!!!"); 
-console.log("api key: " + "d5yqb5k7mfg3da4zfa4ntkk9"); 
+console.log("api key: " + process.env.GETTY_API_KEY); 
 
 const options = {
     hostname: "api.gettyimages.com", 
     port: 443, 
-    path: '/v3/search/images?fields=books',
+    path: 'https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=most_popular&phrase=birds',
     method: 'GET', 
     headers: {
-          'Api-Key': 'd5yqb5k7mfg3da4zfa4ntkk9'
-        }
-    };
+        'Api-Key': "d5yqb5k7mfg3da4zfa4ntkk9"
+    }
+}; 
 
-
-   
 function makeApiRequest(sendBackResponseToBrowser) {
     var apiResponse = ''; 
     
@@ -31,13 +30,13 @@ function makeApiRequest(sendBackResponseToBrowser) {
         response.on('end', function() {
             console.log("status code: " + this.statusCode); 
             //console.log("Complete response: " + apiResponse); 
-            /*execute callback*/
+            
             var responseJSON = JSON.parse(apiResponse); 
             var images = responseJSON.images; 
             console.log(responseJSON); 
             console.log("num images: " + images.length); 
             console.log("url of first image: " + images[0].display_sizes[0].uri); 
-            var imageURI = images[3].display_sizes[0].uri; 
+            var imageURI = images[Math.floor(Math.random() * 29)].display_sizes[0].uri; 
             
             sendBackResponseToBrowser(imageURI); 
             
@@ -51,7 +50,7 @@ function makeApiRequest(sendBackResponseToBrowser) {
 
 
 
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express', className: 'CST438' });
   makeApiRequest(function(imageURI){
@@ -61,4 +60,3 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
-
